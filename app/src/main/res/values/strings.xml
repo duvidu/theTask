@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">theTask</string>
+    <string name="task_name">Task Name</string>
+    <string name="content">Content :</string>
+    <string name="priority">Priority:</string>
+    <string name="deadline">Deadline :</string>
+    <string name="todo1">TODO1</string>
+    <string name="todo2">TODO2</string>
+    <string name="enter_the_description">Enter the description</string>
+    <string name="enter_the_priority">Enter the priority</string>
+    <string name="enter_the_deadline">Enter the deadline</string>
+    <string name="enter_the_title">Enter the title</string>
+    <string name="edit_note">Edit Note.</string>
+    <string name="enter_the_task_name">Enter the task name</string>
+    <string name="Enter_the_description">Enter the description1</string>
+    <string name="Enter_the_priority">Enter the priority</string>
+    <string name="Enter_the_deadline">Enter the deadline</string>
+    <string name="notes">Notes</string>
 </resources>
