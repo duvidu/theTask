@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class NoteDatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
+class TaskDatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
     DATABASE_Version){
 
     companion object{
@@ -34,21 +34,21 @@ class NoteDatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_N
 
     }
 
-    fun insertNote(note: Note){
+    fun insertTask(task: Task){
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_TITLE,note.title)
-            put(COLUMN_CONTENT,note.content)
-            put(COLUMN_PRIORITY,note.priority)
-            put(COLUMN_DEADLINE,note.deadline)
+            put(COLUMN_TITLE,task.title)
+            put(COLUMN_CONTENT,task.content)
+            put(COLUMN_PRIORITY,task.priority)
+            put(COLUMN_DEADLINE,task.deadline)
         }
         db.insert(TABLE_NAME,null, values)
         db.close()
 
     }
 
-    fun getAllNotes(): List<Note>{
-        val notesList = mutableListOf<Note>()
+    fun getAllTasks(): List<Task>{
+        val tasksList = mutableListOf<Task>()
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME"
         val cursor = db.rawQuery(query,null)
@@ -60,32 +60,32 @@ class NoteDatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_N
             val priority = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRIORITY))
             val deadline = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEADLINE))
 
-            val note = Note(id,title,content,priority,deadline)
-            notesList.add(note)
+            val task = Task(id,title,content,priority,deadline)
+            tasksList.add(task)
 
         }
         cursor.close()
         db.close()
-        return notesList
+        return tasksList
     }
 
-    fun updateNote(note: Note){
+    fun updateTask(task: Task){
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_TITLE, note.title)
-            put(COLUMN_CONTENT,note.content)
-            put(COLUMN_PRIORITY, note.priority)
-            put(COLUMN_DEADLINE,note.deadline)
+            put(COLUMN_TITLE, task.title)
+            put(COLUMN_CONTENT,task.content)
+            put(COLUMN_PRIORITY, task.priority)
+            put(COLUMN_DEADLINE,task.deadline)
         }
         val whereClause = "$COLUMN_ID = ?"
-        val whereArgs = arrayOf(note.id.toString())
+        val whereArgs = arrayOf(task.id.toString())
         db.update(TABLE_NAME,values,whereClause,whereArgs)
         db.close()
     }
 
-    fun getNoteByID(noteId:Int):Note{
+    fun getTaskByID(taskId:Int):Task{
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $noteId"
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $taskId"
         val cursor = db.rawQuery(query,null)
         cursor.moveToFirst()
 
@@ -97,13 +97,13 @@ class NoteDatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_N
 
         cursor.close()
         db.close()
-        return Note(id,title,content,priority,deadline)
+        return Task(id,title,content,priority,deadline)
     }
 
-    fun deleteNote(noteId: Int){
+    fun deleteTask(taskId: Int){
         val db = readableDatabase
         val whereClause = "$COLUMN_ID = ?"
-        val whereArgs = arrayOf(noteId.toString())
+        val whereArgs = arrayOf(taskId.toString())
         db.delete(TABLE_NAME,whereClause,whereArgs)
         db.close()
 

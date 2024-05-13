@@ -9,27 +9,27 @@ import com.example.thetask.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var db : NoteDatabaseHelper
-    private lateinit var notesAdapter: NotesAdapter
+    private lateinit var db : TaskDatabaseHelper
+    private lateinit var notesAdapter: TasksAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NoteDatabaseHelper(this)
-        notesAdapter = NotesAdapter(db.getAllNotes(),this)
+        db = TaskDatabaseHelper(this)
+        notesAdapter = TasksAdapter(db.getAllTasks(),this)
 
         binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.notesRecyclerView.adapter = notesAdapter
 
         binding.addButton.setOnClickListener{
-            val intent = Intent(this,AddNoteActivity::class.java)
+            val intent = Intent(this,TaskAddActivity::class.java)
             startActivity(intent)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        notesAdapter.refreshData(db.getAllNotes())
+        notesAdapter.refreshData(db.getAllTasks())
     }
 }

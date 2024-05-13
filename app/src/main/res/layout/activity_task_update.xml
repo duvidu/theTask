@@ -6,78 +6,78 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".AddNoteActivity">
+    tools:context=".TaskUpdateActivity">
 
 
     <TextView
-        android:id="@+id/addNoteHeading"
+        android:id="@+id/editNoteHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
-        android:text="Add Task"
+        android:text="@string/edit_note"
         android:textColor="@color/Blue"
         android:textSize="24sp" />
 
     <ImageView
-        android:id="@+id/saveButton"
+        android:id="@+id/updateSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/addNoteHeading"
+        android:layout_alignTop="@+id/editNoteHeading"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="21dp"
         android:src="@drawable/baseline_add_task_24" />
 
     <EditText
-        android:id="@+id/titleEditText"
+        android:id="@+id/updateTitleEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/enter_the_task_name"
+        android:hint="@string/enter_the_title"
         android:padding="12dp"
         android:textSize="20sp"
-        android:layout_below="@+id/addNoteHeading"
+        android:layout_below="@+id/editNoteHeading"
         android:background="@drawable/blue_border"
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:fontFamily="serif"/>
 
     <EditText
-        android:id="@+id/contentEditText"
+        android:id="@+id/updateContentEditText"
         android:layout_width="400dp"
         android:layout_height="395dp"
-        android:layout_below="@+id/titleEditText"
+        android:layout_below="@+id/updateTitleEditText"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="7dp"
         android:background="@drawable/blue_border"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="serif"
         android:gravity="top"
-        android:hint="@string/Enter_the_description"
+        android:hint="@string/enter_the_description"
         android:padding="12dp"
         android:textSize="18sp"
         tools:ignore="UnknownId" />
 
     <EditText
-        android:id="@+id/priorityEditText"
+        android:id="@+id/updatePriorityEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/Enter_the_priority"
+        android:hint="@string/enter_the_priority"
         android:padding="12dp"
         android:textSize="20sp"
-        android:layout_below="@+id/addNoteHeading"
+        android:layout_below="@+id/editNoteHeading"
         android:background="@drawable/blue_border"
         android:layout_marginTop="490dp"
         android:maxLines="1"
         android:fontFamily="serif"/>
 
     <EditText
-        android:id="@+id/deadlineEditText"
+        android:id="@+id/updateDeadlineEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/Enter_the_deadline"
+        android:hint="@string/enter_the_deadline"
         android:padding="12dp"
         android:textSize="20sp"
-        android:layout_below="@+id/addNoteHeading"
+        android:layout_below="@+id/editNoteHeading"
         android:background="@drawable/blue_border"
         android:layout_marginTop="560dp"
         android:maxLines="1"

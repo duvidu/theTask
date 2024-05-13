@@ -10,10 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class NotesAdapter (private var notes: List<Note>,context: Context) :
-    RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class TasksAdapter (private var tasks: List<Task>, context: Context) :
+    RecyclerView.Adapter<TasksAdapter.NoteViewHolder>() {
 
-        private val db: NoteDatabaseHelper = NoteDatabaseHelper(context)
+        private val db: TaskDatabaseHelper = TaskDatabaseHelper(context)
 
     class NoteViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -27,35 +27,35 @@ class NotesAdapter (private var notes: List<Note>,context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.task_item,parent,false)
         return NoteViewHolder(view)
     }
 
-    override fun getItemCount(): Int = notes.size
+    override fun getItemCount(): Int = tasks.size
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val note = notes[position]
-        holder.titleTextView.text = note.title
-        holder.contentTextView.text = note.content
-        holder.priorityTextView.text = note.priority
-        holder.deadlineTextView.text = note.deadline
+        val task = tasks[position]
+        holder.titleTextView.text = task.title
+        holder.contentTextView.text = task.content
+        holder.priorityTextView.text = task.priority
+        holder.deadlineTextView.text = task.deadline
         holder.updateButton.setOnClickListener{
-            val intent = Intent(holder.itemView.context,UpdateNoteActivity::class.java).apply {
-                putExtra("note_id",note.id)
+            val intent = Intent(holder.itemView.context,TaskUpdateActivity::class.java).apply {
+                putExtra("task_id",task.id)
             }
             holder.itemView.context.startActivity(intent)
         }
 
         holder.deleteButton.setOnClickListener{
-            db.deleteNote(note.id)
+            db.deleteTask(task.id)
 
-            refreshData(db.getAllNotes())
-            Toast.makeText(holder.itemView.context,"Note deleted",Toast.LENGTH_SHORT).show()
+            refreshData(db.getAllTasks())
+            Toast.makeText(holder.itemView.context,"Task deleted",Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun refreshData(newNotes: List<Note>){
-        notes = newNotes
+    fun refreshData(newTasks: List<Task>){
+        tasks = newTasks
         notifyDataSetChanged()
     }
 
